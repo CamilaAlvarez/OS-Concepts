@@ -4,6 +4,7 @@
 #include <linux/proc_fs.h>
 #include <asm/uaccess.h>
 #include <linux/jiffies.h>
+#include <linux/version.h> // includes KERNEL_VERSION
 
 #define BUFFER_SIZE 128
 #define PROC_NAME "jiffies"
