@@ -18,19 +18,21 @@ ssize_t proc_read(struct file *file, char __user *usr_buf, size_t count, loff_t 
 #endif
 
 #ifdef HAVE_PROC_OPS
-static const struct proc_ops proc_ops = {
+static const struct proc_ops my_proc_ops = {
     .proc_read = proc_read,
 };
 #else
-static const struct file_operations proc_ops = {
+static const struct file_operations my_proc_ops = {
     .owner = THIS_MODULE,
     .read = proc_read,
 };
+#endif
+
 static unsigned long long initial_jiffies;
 int proc_init(void)
 {
     initial_jiffies = get_jiffies_64();
-    proc_create(PROC_NAME, 0666, NULL, &proc_ops);
+    proc_create(PROC_NAME, 0666, NULL, &my_proc_ops);
     return 0;
 }
 
