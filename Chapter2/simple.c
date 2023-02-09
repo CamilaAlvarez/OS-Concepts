@@ -10,9 +10,9 @@
 int simple_init(void)
 {
        printk(KERN_INFO "Loading Module\n");
-       printk(KERN_INFO, "Golden ratio: %lu\n", GOLDEN_RATIO_PRIME);
-       printk(KERN_INFO, "HZ: %lu\n", HZ);
-       printk(KERN_INFO, "Jiffies at start: %llu\n", get_jiffies_64());
+       printk(KERN_INFO "Golden ratio: %lu\n", GOLDEN_RATIO_PRIME);
+       printk(KERN_INFO "HZ: %lu\n", HZ);
+       printk(KERN_INFO "Jiffies at start: %llu\n", get_jiffies_64());
        return 0;
 }
 
@@ -20,8 +20,8 @@ int simple_init(void)
 void simple_exit(void)
 {
        printk(KERN_INFO "Removing Module\n");
-       printk(KERN_INFO, "%lu\n", gcd(3300, 24));
-       printk(KERN_INFO, "Jiffies at end: %llu\n", get_jiffies_64());
+       printk(KERN_INFO "%lu\n", gcd(3300, 24));
+       printk(KERN_INFO "Jiffies at end: %llu\n", get_jiffies_64());
 }
 
 /* Macros for registering module entry and exit points. */
