@@ -12,7 +12,7 @@
 // buf belongs to user space
 ssize_t proc_read(struct file *file, char __user *usr_buf, size_t count, loff_t *pos);
 
-static struct file_operations proc_ops = {
+static struct proc_ops proc_ops = {
     .owner = THIS_MODULE,
     .read = proc_read,
 };

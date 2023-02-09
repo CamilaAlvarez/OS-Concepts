@@ -11,7 +11,8 @@
 // buf belongs to user space
 ssize_t proc_read(struct file *file, char __user *usr_buf, size_t count, loff_t *pos);
 
-static struct file_operations proc_ops = {
+// For kernel with version < 5.6 we use static struct file_operations, otherwise we use static struct proc_ops
+static struct proc_ops proc_ops = {
     .owner = THIS_MODULE,
     .read = proc_read,
 };
