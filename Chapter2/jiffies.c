@@ -6,7 +6,7 @@
 #include <linux/jiffies.h>
 
 #define BUFFER_SIZE 128
-#define PROC_NAME jiffies
+#define PROC_NAME "jiffies"
 
 // buf belongs to user space
 ssize_t proc_read(struct file *file, char __user *usr_buf, size_t count, loff_t *pos);

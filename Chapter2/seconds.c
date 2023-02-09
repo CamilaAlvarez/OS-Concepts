@@ -7,7 +7,7 @@
 #include <asm/param.h>
 
 #define BUFFER_SIZE 128
-#define PROC_NAME seconds
+#define PROC_NAME "seconds"
 
 // buf belongs to user space
 ssize_t proc_read(struct file *file, char __user *usr_buf, size_t count, loff_t *pos);
@@ -42,9 +42,14 @@ ssize_t proc_read(struct file *file, char __user *usr_buf, size_t count, loff_t 
     }
     // I'm guessing this is to avoid race conditions
     completed = 1;
+    // SSE is a process or technology that enables single instruction multiple data.
+    // Older processors only process a single data element per instruction. SSE enables the instruction to handle multiple data elements.
     unsigned long long elapsed_jiffies = get_jiffies_64() - initial_jiffies;
-    float elapsed_seconds = ((float)elapsed_jiffies) / HZ;
-    rv = sprintf(buffer, "jiffies: %.2f\n", elapsed_seconds);
+    // It is a bad idea to use floating point operations in the kernel!
+    // Floating point operations are acrried out by FPU (Floating processor unit)
+    // You need to manually indicate you'll be using fpus => saving the FPU registers and other FPU state takes time
+    unsigned long long elapsed_seconds = elapsed_jiffies / HZ;
+    rv = sprintf(buffer, "jiffies: %llu\n", elapsed_seconds);
 
     copy_to_user(usr_buf, buffer, rv);
 

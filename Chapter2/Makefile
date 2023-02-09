@@ -1,4 +1,5 @@
-obj-m += simple.o
+# $(obj-m) specifies object files that are built as kernel modules
+obj-m += simple.o jiffies.o seconds.o
 # /lib/modules/$(shell uname -r)/build: To build against current kernel
 # M= tells the builder that we are building an external module from the data in this directory
 all:
