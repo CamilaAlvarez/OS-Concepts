@@ -12,7 +12,16 @@
 // buf belongs to user space
 ssize_t proc_read(struct file *file, char __user *usr_buf, size_t count, loff_t *pos);
 
-static struct proc_ops proc_ops = {
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 6, 0)
+#define HAVE_PROC_OPS
+#endif
+
+#ifdef HAVE_PROC_OPS
+static const struct proc_ops proc_ops = {
+    .proc_read = proc_read,
+};
+#else
+static const struct file_operations proc_ops = {
     .owner = THIS_MODULE,
     .read = proc_read,
 };
