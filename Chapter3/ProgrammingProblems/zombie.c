@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+// When running ps -l the child has state Z
 int main(void)
 {
     int pid = fork();
